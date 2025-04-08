@@ -1,248 +1,255 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detetive do Tempo</title>
-  <style>
+<!DOCTYPE HTML>
+<HTML LANG="PT-BR">
+<HEAD>
+  <META CHARSET="UTF-8">
+  <META NAME="VIEWPORT" CONTENT="WIDTH=DEVICE-WIDTH, INITIAL-SCALE=1.0">
+  <TITLE>DETETIVE DO TEMPO</TITLE>
+  <STYLE>
     * {
-      box-sizing: border-box;
+      BOX-SIZING: BORDER-BOX;
     }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('image/fundo.jpg') no-repeat center center fixed;
-      background-size: cover;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      font-size: 20px;
+    BODY {
+      FONT-FAMILY: 'SEGOE UI', TAHOMA, GENEVA, VERDANA, SANS-SERIF;
+      BACKGROUND: URL('IMAGE/FUNDO.JPG') NO-REPEAT CENTER CENTER FIXED;
+      BACKGROUND-SIZE: COVER;
+      MARGIN: 0;
+      PADDING: 0;
+      DISPLAY: FLEX;
+      JUSTIFY-CONTENT: CENTER;
+      ALIGN-ITEMS: CENTER;
+      MIN-HEIGHT: 100VH;
+      FONT-SIZE: 20PX;
     }
-    .container {
-      background-color: rgba(255, 243, 224, 0.95);
-      border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      max-width: 600px;
-      width: 90%;
-      padding: 30px;
-      text-align: center;
+    .CONTAINER {
+      BACKGROUND-COLOR: RGBA(255, 243, 224, 0.95);
+      BORDER-RADIUS: 16PX;
+      BOX-SHADOW: 0 8PX 16PX RGBA(0,0,0,0.2);
+      MAX-WIDTH: 600PX;
+      WIDTH: 90%;
+      PADDING: 30PX;
+      TEXT-ALIGN: CENTER;
     }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+    H1 {
+      FONT-SIZE: 2.5EM;
+      MARGIN-BOTTOM: 20PX;
     }
-    .fase canvas, .fase img {
-      max-width: 100%;
-      height: auto;
-      margin: 10px 0;
+    .FASE CANVAS, .FASE IMG {
+      MAX-WIDTH: 100%;
+      HEIGHT: AUTO;
+      MARGIN: 10PX 0;
     }
-    .fase {
-      display: none;
+    .FASE {
+      DISPLAY: NONE;
     }
-    .visivel {
-      display: block;
+    .VISIVEL {
+      DISPLAY: BLOCK;
     }
-    .opcao {
-      display: block;
-      margin: 10px auto;
-      padding: 14px 24px;
-      background-color: #ffd54f;
-      border: none;
-      border-radius: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    .OPCAO {
+      DISPLAY: BLOCK;
+      MARGIN: 10PX AUTO;
+      PADDING: 14PX 24PX;
+      BACKGROUND-COLOR: #FFD54F;
+      BORDER: NONE;
+      BORDER-RADIUS: 10PX;
+      FONT-SIZE: 20PX;
+      CURSOR: POINTER;
+      TRANSITION: BACKGROUND-COLOR 0.3S;
     }
-    .opcao:hover {
-      background-color: #ffca28;
+    .OPCAO:HOVER {
+      BACKGROUND-COLOR: #FFCA28;
     }
-    #pontuacao {
-      font-size: 20px;
-      margin-bottom: 10px;
+    #PONTUACAO {
+      FONT-SIZE: 20PX;
+      MARGIN-BOTTOM: 10PX;
     }
-    #reiniciar {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 18px;
-      background-color: #ffb74d;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    #REINICIAR {
+      MARGIN-TOP: 20PX;
+      PADDING: 12PX 24PX;
+      FONT-SIZE: 18PX;
+      BACKGROUND-COLOR: #FFB74D;
+      BORDER: NONE;
+      BORDER-RADIUS: 8PX;
+      CURSOR: POINTER;
     }
-    #reiniciar:hover {
-      background-color: #ffa726;
+    #REINICIAR:HOVER {
+      BACKGROUND-COLOR: #FFA726;
     }
-    #mensagemFinal {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #4caf50;
-      margin-top: 20px;
+    #MENSAGEMFINAL {
+      FONT-SIZE: 1.5EM;
+      FONT-WEIGHT: BOLD;
+      COLOR: #4CAF50;
+      MARGIN-TOP: 20PX;
     }
-    .relogio-digital {
-      display: inline-block;
-      background-color: #000;
-      color: #0f0;
-      font-family: 'Courier New', monospace;
-      font-size: 36px;
-      padding: 15px 30px;
-      border-radius: 10px;
-      box-shadow: inset 0 0 10px #0f0, 0 0 20px #0f0;
-      margin: 15px auto;
+    .RELOGIO-DIGITAL {
+      DISPLAY: INLINE-BLOCK;
+      BACKGROUND-COLOR: #000;
+      COLOR: #0F0;
+      FONT-FAMILY: 'COURIER NEW', MONOSPACE;
+      FONT-SIZE: 36PX;
+      PADDING: 15PX 30PX;
+      BORDER-RADIUS: 10PX;
+      BOX-SHADOW: INSET 0 0 10PX #0F0, 0 0 20PX #0F0;
+      MARGIN: 15PX AUTO;
     }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>🕵️ Detetive do Tempo</h1>
-    <div id="pontuacao">Pontuação: 0</div>
-    <div id="jogo"></div>
-    <div id="mensagemFinal"></div>
-    <button id="reiniciar" onclick="reiniciarJogo()">🔄 Reiniciar</button>
-  </div>
+  </STYLE>
+</HEAD>
+<BODY>
+  <DIV CLASS="CONTAINER">
+    <H1>🕵️ DETETIVE DO TEMPO</H1>
+    <DIV ID="PONTUACAO">PONTUAÇÃO: 0</DIV>
+    <DIV ID="JOGO"></DIV>
+    <DIV ID="MENSAGEMFINAL"></DIV>
+    <BUTTON ID="REINICIAR" ONCLICK="REINICIARJOGO()">🔄 REINICIAR</BUTTON>
+  </DIV>
 
-  <audio id="somAcerto" src="audios/acerto.mp3"></audio>
-  <audio id="somErro" src="audios/erro.mp3"></audio>
+  <AUDIO ID="SOMACERTO" SRC="AUDIOS/ACERTO.MP3"></AUDIO>
+  <AUDIO ID="SOMERRO" SRC="AUDIOS/ERRO.MP3"></AUDIO>
 
-  <script>
-    const fases = [
-      { pergunta: "Que horas estão marcadas no relógio digital?", texto: "07:15", opcoes: ["06:30", "07:15", "08:45"], correta: "07:15" },
-      { pergunta: "Que horas estão marcadas no relógio analógico?", analogico: "11:30", opcoes: ["11:30", "10:15", "12:00"], correta: "11:30" },
-      { pergunta: "Se a aula começa às 8:00 e termina às 9:00, quanto tempo dura?", opcoes: ["30 minutos", "1 hora", "2 horas"], correta: "1 hora" },
-      { pergunta: "O lanche começou às 9:30 e terminou às 10:00. Quanto tempo durou?", opcoes: ["30 minutos", "1 hora", "15 minutos"], correta: "30 minutos" },
-      { pergunta: "Que horas estão marcadas no relógio analógico?", analogico: "09:00", opcoes: ["08:00", "09:00", "10:00"], correta: "09:00" },
-      { pergunta: "A peça de teatro começa às 15:00 e termina às 17:00. Quanto tempo dura?", opcoes: ["1 hora", "2 horas", "3 horas"], correta: "2 horas" },
-      { pergunta: "João começou a estudar às 14:15 e parou às 15:15. Quanto tempo ele estudou?", opcoes: ["30 minutos", "45 minutos", "1 hora"], correta: "1 hora" },
-      { pergunta: "Relógio analógico: que horas são?", analogico: "08:45", opcoes: ["08:30", "08:45", "09:15"], correta: "08:45" },
-      { pergunta: "A escola abre às 07:00 e fecha às 17:00. Quanto tempo fica aberta?", opcoes: ["9 horas", "10 horas", "12 horas"], correta: "10 horas" },
-      { pergunta: "Pedro foi ao parquinho das 16:00 às 17:30. Quanto tempo ele ficou lá?", opcoes: ["1 hora", "1 hora e meia", "2 horas"], correta: "1 hora e meia" },
-      { pergunta: "Qual é a relação entre 1 hora e minutos?", opcoes: ["30 minutos", "60 minutos", "90 minutos"], correta: "60 minutos" },
-      { pergunta: "O filme começou às 19:00 e terminou às 20:45. Quanto tempo durou?", opcoes: ["1h45", "1h30", "2h"], correta: "1h45" },
-      { pergunta: "Que horas estão marcadas no relógio analógico?", analogico: "10:15", opcoes: ["10:15", "11:15", "09:45"], correta: "10:15" },
-      { pergunta: "Se você dormir às 21:00 e acordar às 06:00, quantas horas dormiu?", opcoes: ["8 horas", "9 horas", "7 horas"], correta: "9 horas" },
-      { pergunta: "Relacione: 2 horas tem quantos minutos?", opcoes: ["60", "90", "120"], correta: "120" }
+  <SCRIPT>
+    CONST FASES = [
+      { PERGUNTA: "QUE HORAS ESTÃO MARCADAS NO RELÓGIO DIGITAL?", TEXTO: "07:15", OPCOES: ["06:30", "07:15", "08:45"], CORRETA: "07:15" },
+      { PERGUNTA: "QUE HORAS ESTÃO MARCADAS NO RELÓGIO ANALÓGICO?", ANALOGICO: "11:30", OPCOES: ["11:30", "10:15", "12:00"], CORRETA: "11:30" },
+      { PERGUNTA: "SE A AULA COMEÇA ÀS 8:00 E TERMINA ÀS 9:00, QUANTO TEMPO DURA?", OPCOES: ["30 MINUTOS", "1 HORA", "2 HORAS"], CORRETA: "1 HORA" },
+      { PERGUNTA: "O LANCHE COMEÇOU ÀS 9:30 E TERMINOU ÀS 10:00. QUANTO TEMPO DUROU?", OPCOES: ["30 MINUTOS", "1 HORA", "15 MINUTOS"], CORRETA: "30 MINUTOS" },
+      { PERGUNTA: "QUE HORAS ESTÃO MARCADAS NO RELÓGIO ANALÓGICO?", ANALOGICO: "09:00", OPCOES: ["08:00", "09:00", "10:00"], CORRETA: "09:00" },
+      { PERGUNTA: "A PEÇA DE TEATRO COMEÇA ÀS 15:00 E TERMINA ÀS 17:00. QUANTO TEMPO DURA?", OPCOES: ["1 HORA", "2 HORAS", "3 HORAS"], CORRETA: "2 HORAS" },
+      { PERGUNTA: "JOÃO COMEÇOU A ESTUDAR ÀS 14:15 E PAROU ÀS 15:15. QUANTO TEMPO ELE ESTUDOU?", OPCOES: ["30 MINUTOS", "45 MINUTOS", "1 HORA"], CORRETA: "1 HORA" },
+      { PERGUNTA: "RELÓGIO ANALÓGICO: QUE HORAS SÃO?", ANALOGICO: "08:45", OPCOES: ["08:30", "08:45", "09:15"], CORRETA: "08:45" },
+      { PERGUNTA: "A ESCOLA ABRE ÀS 07:00 E FECHA ÀS 17:00. QUANTO TEMPO FICA ABERTA?", OPCOES: ["9 HORAS", "10 HORAS", "12 HORAS"], CORRETA: "10 HORAS" },
+      { PERGUNTA: "PEDRO FOI AO PARQUINHO DAS 16:00 ÀS 17:30. QUANTO TEMPO ELE FICOU LÁ?", OPCOES: ["1 HORA", "1 HORA E MEIA", "2 HORAS"], CORRETA: "1 HORA E MEIA" },
+      { PERGUNTA: "QUAL É A RELAÇÃO ENTRE 1 HORA E MINUTOS?", OPCOES: ["30 MINUTOS", "60 MINUTOS", "90 MINUTOS"], CORRETA: "60 MINUTOS" },
+      { PERGUNTA: "O FILME COMEÇOU ÀS 19:00 E TERMINOU ÀS 20:45. QUANTO TEMPO DUROU?", OPCOES: ["1H45", "1H30", "2H"], CORRETA: "1H45" },
+      { PERGUNTA: "QUE HORAS ESTÃO MARCADAS NO RELÓGIO ANALÓGICO?", ANALOGICO: "10:15", OPCOES: ["10:15", "11:15", "09:45"], CORRETA: "10:15" },
+      { PERGUNTA: "SE VOCÊ DORMIR ÀS 21:00 E ACORDAR ÀS 06:00, QUANTAS HORAS DORMIU?", OPCOES: ["8 HORAS", "9 HORAS", "7 HORAS"], CORRETA: "9 HORAS" },
+      { PERGUNTA: "RELACIONE: 2 HORAS TEM QUANTOS MINUTOS?", OPCOES: ["60", "90", "120"], CORRETA: "120" }
     ];
 
-    const jogo = document.getElementById("jogo");
-    const somAcerto = document.getElementById("somAcerto");
-    const somErro = document.getElementById("somErro");
-    const pontuacaoEl = document.getElementById("pontuacao");
-    const mensagemFinalEl = document.getElementById("mensagemFinal");
+    CONST JOGO = DOCUMENT.GETELEMENTBYID("JOGO");
+    CONST SOMACERTO = DOCUMENT.GETELEMENTBYID("SOMACERTO");
+    CONST SOMERRO = DOCUMENT.GETELEMENTBYID("SOMERRO");
+    CONST PONTUACAOEL = DOCUMENT.GETELEMENTBYID("PONTUACAO");
+    CONST MENSAGEMFINALEL = DOCUMENT.GETELEMENTBYID("MENSAGEMFINAL");
 
-    let faseAtual = 0;
-    let pontuacao = 0;
+    LET FASEATUAL = 0;
+    LET PONTUACAO = 0;
 
-    function desenharRelogio(horas, minutos) {
-      const canvas = document.createElement("canvas");
-      canvas.width = 200;
-      canvas.height = 200;
-      const ctx = canvas.getContext("2d");
+    FUNCTION DESENHARRELOGIO(HORAS, MINUTOS) {
+      CONST CANVAS = DOCUMENT.CREATEELEMENT("CANVAS");
+      CANVAS.WIDTH = 200;
+      CANVAS.HEIGHT = 200;
+      CONST CTX = CANVAS.GETCONTEXT("2D");
 
-      const cx = 100;
-      const cy = 100;
-      const raio = 90;
+      CONST CX = 100;
+      CONST CY = 100;
+      CONST RAIO = 90;
 
-      ctx.clearRect(0, 0, 200, 200);
-      ctx.beginPath();
-      ctx.arc(cx, cy, raio, 0, 2 * Math.PI);
-      ctx.stroke();
+      CTX.CLEARRECT(0, 0, 200, 200);
+      CTX.BEGINPATH();
+      CTX.ARC(CX, CY, RAIO, 0, 2 * MATH.PI);
+      CTX.STROKE();
 
-      ctx.font = "20px Arial";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      for (let i = 1; i <= 12; i++) {
-        const ang = (i - 3) * (Math.PI * 2) / 12;
-        ctx.fillText(i, cx + Math.cos(ang) * 70, cy + Math.sin(ang) * 70);
+      CTX.FONT = "20PX ARIAL";
+      CTX.TEXTALIGN = "CENTER";
+      CTX.TEXTBASELINE = "MIDDLE";
+      FOR (LET I = 1; I <= 12; I++) {
+        CONST ANG = (I - 3) * (MATH.PI * 2) / 12;
+        CTX.FILLTEXT(I, CX + MATH.COS(ANG) * 70, CY + MATH.SIN(ANG) * 70);
       }
 
-      const anguloHora = ((horas % 12) + minutos / 60) * (Math.PI * 2) / 12 - Math.PI / 2;
-      const anguloMin = minutos * (Math.PI * 2) / 60 - Math.PI / 2;
+      CONST ANGULOHORA = ((HORAS % 12) + MINUTOS / 60) * (MATH.PI * 2) / 12 - MATH.PI / 2;
+      CONST ANGULOMIN = MINUTOS * (MATH.PI * 2) / 60 - MATH.PI / 2;
 
-      // Ponteiro das horas (menor)
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(cx + Math.cos(anguloHora) * 40, cy + Math.sin(anguloHora) * 40);
-      ctx.lineWidth = 4;
-      ctx.stroke();
+      // PONTEIRO DAS HORAS (MENOR)
+      CTX.BEGINPATH();
+      CTX.MOVETO(CX, CY);
+      CTX.LINETO(CX + MATH.COS(ANGULOHORA) * 40, CY + MATH.SIN(ANGULOHORA) * 40);
+      CTX.LINEWIDTH = 4;
+      CTX.STROKE();
 
-      // Ponteiro dos minutos (maior)
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(cx + Math.cos(anguloMin) * 70, cy + Math.sin(anguloMin) * 70);
-      ctx.lineWidth = 2;
-      ctx.stroke();
+      // PONTEIRO DOS MINUTOS (MAIOR)
+      CTX.BEGINPATH();
+      CTX.MOVETO(CX, CY);
+      CTX.LINETO(CX + MATH.COS(ANGULOMIN) * 70, CY + MATH.SIN(ANGULOMIN) * 70);
+      CTX.LINEWIDTH = 2;
+      CTX.STROKE();
 
-      return canvas;
+      RETURN CANVAS;
     }
 
-    function mostrarFase() {
-      jogo.innerHTML = "";
-      mensagemFinalEl.textContent = "";
-      const fase = fases[faseAtual];
-      const div = document.createElement("div");
-      div.className = "fase visivel";
+    FUNCTION MOSTRARFASE() {
+      JOGO.INNERHTML = "";
+      MENSAGEMFINALEL.TEXTCONTENT = "";
+      CONST FASE = FASES[FASEATUAL];
+      CONST DIV = DOCUMENT.CREATEELEMENT("DIV");
+      DIV.CLASSNAME = "FASE VISIVEL";
 
-      const p = document.createElement("p");
-      p.innerText = fase.pergunta;
-      div.appendChild(p);
+      CONST P = DOCUMENT.CREATEELEMENT("P");
+      P.INNERTEXT = FASE.PERGUNTA;
+      DIV.APPENDCHILD(P);
 
-      if (fase.texto) {
-        const relogioDigital = document.createElement("div");
-        relogioDigital.className = "relogio-digital";
-        relogioDigital.textContent = fase.texto;
-        div.appendChild(relogioDigital);
+      IF (FASE.TEXTO) {
+        CONST RELOGIODIGITAL = DOCUMENT.CREATEELEMENT("DIV");
+        RELOGIODIGITAL.CLASSNAME = "RELOGIO-DIGITAL";
+        RELOGIODIGITAL.TEXTCONTENT = FASE.TEXTO;
+        DIV.APPENDCHILD(RELOGIODIGITAL);
       }
 
-      if (fase.analogico) {
-        const [h, m] = fase.analogico.split(":").map(Number);
-        const relogio = desenharRelogio(h, m);
-        div.appendChild(relogio);
+      IF (FASE.ANALOGICO) {
+        CONST [H, M] = FASE.ANALOGICO.SPLIT(":").MAP(NUMBER);
+        CONST RELOGIO = DESENHARRELOGIO(H, M);
+        DIV.APPENDCHILD(RELOGIO);
       }
 
-      fase.opcoes.forEach(opcao => {
-        const btn = document.createElement("button");
-        btn.className = "opcao";
-        btn.innerText = opcao;
-        btn.onclick = () => verificarResposta(opcao);
-        div.appendChild(btn);
+      FASE.OPCOES.FOREACH(OPCAO => {
+        CONST BTN = DOCUMENT.CREATEELEMENT("BUTTON");
+        BTN.CLASSNAME = "OPCAO";
+        BTN.INNERTEXT = OPCAO;
+        BTN.ONCLICK = () => VERIFICARRESPOSTA(OPCAO);
+        DIV.APPENDCHILD(BTN);
       });
 
-      jogo.appendChild(div);
+      JOGO.APPENDCHILD(DIV);
     }
 
-    function verificarResposta(resposta) {
-      const fase = fases[faseAtual];
-      if (resposta === fase.correta) {
-        somAcerto.play();
-        pontuacao += 10;
-        faseAtual++;
-        atualizarPontuacao();
-        if (faseAtual < fases.length) {
-          setTimeout(mostrarFase, 1000);
-        } else {
-          mensagemFinalEl.textContent = "🎉 Parabéns! Você concluiu todas as fases!";
+    FUNCTION VERIFICARRESPOSTA(RESPOSTA) {
+      CONST FASE = FASES[FASEATUAL];
+      IF (RESPOSTA === FASE.CORRETA) {
+        SOMACERTO.PLAY();
+        PONTUACAO += 10;
+        FASEATUAL++;
+        ATUALIZARPONTUACAO();
+        IF (FASEATUAL < FASES.LENGTH) {
+          SETTIMEOUT(MOSTRARFASE, 1000);
+        } ELSE {
+          MENSAGEMFINALEL.TEXTCONTENT = "🎉 PARABÉNS! VOCÊ CONCLUIU TODAS AS FASES!";
         }
-      } else {
-        somErro.play();
-        pontuacao = Math.max(0, pontuacao - 5);
-        atualizarPontuacao();
-        setTimeout(() => alert("Ops! Tente novamente!"), 300);
+      } ELSE {
+        SOMERRO.PLAY();
+        PONTUACAO = MATH.MAX(0, PONTUACAO - 5);
+        ATUALIZARPONTUACAO();
+        SETTIMEOUT(() => ALERT("OPS! TENTE NOVAMENTE!"), 300);
       }
     }
 
-    function atualizarPontuacao() {
-      pontuacaoEl.textContent = `Pontuação: ${pontuacao}`;
+    FUNCTION ATUALIZARPONTUACAO() {
+      PONTUACAOEL.TEXTCONTENT = `PONTUAÇÃO: ${PONTUACAO}`;
     }
 
-    function reiniciarJogo() {
-      faseAtual = 0;
-      pontuacao = 0;
-      atualizarPontuacao();
-      mostrarFase();
+    FUNCTION REINICIARJOGO() {
+      FASEATUAL = 0;
+      PONTUACAO = 0;
+      ATUALIZARPONTUACAO();
+      MOSTRARFASE();
     }
 
-    mostrarFase();
-  </script>
-</body>
-</html>
+    MOSTRARFASE();
+  </SCRIPT>
+</BODY>
+</HTML>
+
+     
+      
+     
+ 
+    
+     
