@@ -18,6 +18,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      font-size: 20px;
     }
     .container {
       background-color: rgba(255, 243, 224, 0.95);
@@ -29,7 +30,7 @@
       text-align: center;
     }
     h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       margin-bottom: 20px;
     }
     .fase canvas, .fase img {
@@ -46,11 +47,11 @@
     .opcao {
       display: block;
       margin: 10px auto;
-      padding: 12px 20px;
+      padding: 14px 24px;
       background-color: #ffd54f;
       border: none;
       border-radius: 10px;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
       transition: background-color 0.3s;
     }
@@ -58,13 +59,13 @@
       background-color: #ffca28;
     }
     #pontuacao {
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
     #reiniciar {
       margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 12px 24px;
+      font-size: 18px;
       background-color: #ffb74d;
       border: none;
       border-radius: 8px;
@@ -74,10 +75,21 @@
       background-color: #ffa726;
     }
     #mensagemFinal {
-      font-size: 1.4em;
+      font-size: 1.5em;
       font-weight: bold;
       color: #4caf50;
       margin-top: 20px;
+    }
+    .relogio-digital {
+      display: inline-block;
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      font-size: 36px;
+      padding: 15px 30px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px #0f0, 0 0 20px #0f0;
+      margin: 15px auto;
     }
   </style>
 </head>
@@ -136,22 +148,29 @@
       ctx.arc(cx, cy, raio, 0, 2 * Math.PI);
       ctx.stroke();
 
+      ctx.font = "20px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
       for (let i = 1; i <= 12; i++) {
         const ang = (i - 3) * (Math.PI * 2) / 12;
-        ctx.fillText(i, cx + Math.cos(ang) * 70, cy + Math.sin(ang) * 70 + 5);
+        ctx.fillText(i, cx + Math.cos(ang) * 70, cy + Math.sin(ang) * 70);
       }
 
       const anguloHora = ((horas % 12) + minutos / 60) * (Math.PI * 2) / 12 - Math.PI / 2;
       const anguloMin = minutos * (Math.PI * 2) / 60 - Math.PI / 2;
 
+      // Ponteiro das horas (menor)
       ctx.beginPath();
       ctx.moveTo(cx, cy);
-      ctx.lineTo(cx + Math.cos(anguloHora) * 50, cy + Math.sin(anguloHora) * 50);
+      ctx.lineTo(cx + Math.cos(anguloHora) * 40, cy + Math.sin(anguloHora) * 40);
+      ctx.lineWidth = 4;
       ctx.stroke();
 
+      // Ponteiro dos minutos (maior)
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(cx + Math.cos(anguloMin) * 70, cy + Math.sin(anguloMin) * 70);
+      ctx.lineWidth = 2;
       ctx.stroke();
 
       return canvas;
@@ -169,9 +188,10 @@
       div.appendChild(p);
 
       if (fase.texto) {
-        const texto = document.createElement("div");
-        texto.textContent = fase.texto;
-        div.appendChild(texto);
+        const relogioDigital = document.createElement("div");
+        relogioDigital.className = "relogio-digital";
+        relogioDigital.textContent = fase.texto;
+        div.appendChild(relogioDigital);
       }
 
       if (fase.analogico) {
