@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detetive do Tempo</title>
   <style>
     * {
@@ -33,7 +33,7 @@
       font-size: 2.5em;
       margin-bottom: 20px;
     }
-    .fase canvas, .fase img {
+    .fase canvas {
       max-width: 100%;
       height: auto;
       margin: 10px 0;
@@ -143,7 +143,6 @@
       const cy = 100;
       const raio = 90;
 
-      ctx.clearRect(0, 0, 200, 200);
       ctx.beginPath();
       ctx.arc(cx, cy, raio, 0, 2 * Math.PI);
       ctx.stroke();
@@ -159,14 +158,12 @@
       const anguloHora = ((horas % 12) + minutos / 60) * (Math.PI * 2) / 12 - Math.PI / 2;
       const anguloMin = minutos * (Math.PI * 2) / 60 - Math.PI / 2;
 
-      // Ponteiro das horas (menor)
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(cx + Math.cos(anguloHora) * 40, cy + Math.sin(anguloHora) * 40);
       ctx.lineWidth = 4;
       ctx.stroke();
 
-      // Ponteiro dos minutos (maior)
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(cx + Math.cos(anguloMin) * 70, cy + Math.sin(anguloMin) * 70);
@@ -196,8 +193,7 @@
 
       if (fase.analogico) {
         const [h, m] = fase.analogico.split(":").map(Number);
-        const relogio = desenharRelogio(h, m);
-        div.appendChild(relogio);
+        div.appendChild(desenharRelogio(h, m));
       }
 
       fase.opcoes.forEach(opcao => {
